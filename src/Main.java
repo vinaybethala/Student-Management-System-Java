@@ -20,21 +20,34 @@ public class Main {
            int choice = in.nextInt();
            switch(choice){
             case 1 :
+                int rollNumber;
+                String name;
+                int age;
+                String department;
+                String email;
+                while(true){
                 System.out.print("Enter student rollNumber : ");
-                int rollNumber = in.nextInt();
+                rollNumber = in.nextInt();
                 in.nextLine();
+                if(rollNumber>0){
                 System.out.print("Enter Name : ");
-                String name = in.nextLine();
+                name = in.nextLine();
                 System.out.print("Enter Age : ");
-                int age = in.nextInt();
+                age = in.nextInt();
                 in.nextLine();
                 System.out.print("Enter Departmet:");
-                String department = in.nextLine();
+                department = in.nextLine();
                 System.out.print("Enter email : ");
-                String email =in.nextLine();
-            Student student = new Student(rollNumber,name,age,department,email);
-            sms.addStudent(student);
+                email =in.nextLine();
+                Student student = new Student(rollNumber,name,age,department,email);
+                sms.addStudent(student);
                 break;
+                }
+                else{
+                    System.out.println("Roll Number must be greater than 0.");
+                }
+            }
+            break;
             case 2:
                 sms.displayStudents();
                 break;   
