@@ -20,7 +20,7 @@ public class StudentManagementSystem{
   // display student
    public void displayStudents(){
     if(students.isEmpty()){
-        System.out.print("No students found");
+        System.out.println("No students found");
         return;
     }
   for(Student student : students){
