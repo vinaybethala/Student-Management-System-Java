@@ -1,10 +1,67 @@
 package src;
 import java.util.Scanner;
 public class Main {
+      private static int readValidRollNumber(Scanner in){
+        System.out.print("Enter student rollNumber : ");
+        int rollNumber =in.nextInt();
+        in.nextLine();
+        if(rollNumber>0){
+        return rollNumber;
+        }
+        else {
+            System.out.println("rollNumber must be greater than 0");
+            return readValidRollNumber(in);
+        }
 
+}
+private static String readValidName(Scanner in){
+    System.out.print("Enter Student Name: ");
+    String name = in.nextLine();
+    for(int i=0;i<name.length();i++){
+        char ch =name.charAt(i);
+        if(Character.isDigit(ch)){
+            System.out.println("Name should not contain any digits!");
+            return readValidName(in);
+        }
+    }
+    return name;
+}
+private static int readValidAge(Scanner in){
+    System.out.print("Enter age of the Student: ");
+    int age = in.nextInt();
+    in.nextLine();
+    if(age>0 && age<=100){
+        return age;
+    }
+    else {
+        System.out.println("Invalid age, age should be between 0 and 100");
+        return readValidAge(in);
+    }
+}
+private static String readValidDept(Scanner in){
+    System.out.print("Enter student department: ");
+    String dept = in.nextLine();
+    if(dept.equals("CSE")||dept.equals("AIML")||dept.equals("AIDS")||dept.equals("CS")){
+        return dept;
+    }
+    else{
+        System.out.println("Invalid department choose any one CSE, AIML, AIDS, CS");
+        return readValidDept(in);
+    }
+}
+private static String readValidEmail(Scanner in){
+  System.out.print("Enter email id: ");
+  String email =in.nextLine();
+  return email;
+ }
     public static void main(String[] args) {  
         Scanner in = new Scanner(System.in);
         StudentManagementSystem sms = new StudentManagementSystem();
+                int rollNumber;
+                String name;
+                int age;
+                String department;
+                String email;
        while (true) { 
            System.out.println("==============================");
            System.out.println("Student Management System");
@@ -20,41 +77,19 @@ public class Main {
            int choice = in.nextInt();
            switch(choice){
             case 1 :
-                int rollNumber;
-                String name;
-                int age;
-                String department;
-                String email;
-                while(true){
-                System.out.print("Enter student rollNumber : ");
-                rollNumber = in.nextInt();
-                in.nextLine();
-                if(rollNumber>0){
-                System.out.print("Enter Name : ");
-                name = in.nextLine();
-                System.out.print("Enter Age : ");
-                age = in.nextInt();
-                in.nextLine();
-                System.out.print("Enter Departmet:");
-                department = in.nextLine();
-                System.out.print("Enter email : ");
-                email =in.nextLine();
+                rollNumber = readValidRollNumber(in);
+                name = readValidName(in);
+                age = readValidAge(in);
+                department = readValidDept(in);
+                email = readValidEmail(in);
                 Student student = new Student(rollNumber,name,age,department,email);
                 sms.addStudent(student);
-                break;
-                }
-                else{
-                    System.out.println("Roll Number must be greater than 0.");
-                }
-            }
             break;
             case 2:
                 sms.displayStudents();
                 break;   
             case 3:
-                System.out.print("Enter the roll number: ");
-                rollNumber = in.nextInt();
-                in.nextLine();
+                rollNumber = readValidRollNumber(in);
                 Student stu = sms.searchStudent(rollNumber);
                 if(stu!=null){
                 System.out.print(stu);
@@ -64,24 +99,15 @@ public class Main {
                 }
                 break;
             case 4:
-                System.out.print("Enter student rollNumber : ");
-                rollNumber = in.nextInt();
-                in.nextLine();
-                System.out.print("Enter Name : ");
-                name = in.nextLine();
-                System.out.print("Enter Age : ");
-                age = in.nextInt();
-                in.nextLine();
-                System.out.print("Enter Departmet:");
-                department = in.nextLine();
-                System.out.print("Enter email : ");
-                email =in.nextLine();
+                rollNumber = readValidRollNumber(in);
+                name = readValidName(in);
+                age = readValidAge(in);
+                department = readValidEmail(in);
+                email = readValidName(in);
             sms.updateStudent(rollNumber, name, age, department, email);
             break;
             case 5 :
-                System.out.print("Enter rollNumber :");
-                rollNumber = in.nextInt();
-                in.nextLine();
+                rollNumber = readValidRollNumber(in);
                 sms.deleteStudent(rollNumber);
                 break;
             case 6:

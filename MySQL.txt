@@ -1,0 +1,38 @@
+Data : is a collection of multiple raw information like facts ,figures, numbers, text or other observations that can be processed and analysed
+to derive meaningful structured information
+examples : audio, video, images, text,  
+
+Data Base : The organized collection of data or information is called database
+
+Two types :
+Relational Databases : tables -> rows and columns(MySQL)
+Non Relational Databases : consists of graphs, document, key-values etc.
+
+DBMS(database management system): is a software that is used to store and access the data from the database in a structured manner 
+
+Relational Database Management System : it is an advanced version of DBMS
+example : MYSQL, SQl server, IBM and Oracle.
+
+Non-Relational Database Management system : This non RDBMS is designed for non tabular form.
+examples : MangoDB, elastic search, Redis etc.
+
+Difference B/W DBMS and RDBMS
+  DBMS	RDBMS
+1) no tables	1) tables 
+2) no relations ,single user	2) relations, multiple users 
+
+Introduction to SQL : SQL is used to perform operations on relational DBMS SQl provides multiple commands like CRUD
+
+DDL(Data definition language) : In this command there are three operations 
+Create 
+Alter
+Drop
+
+DQL(Data Query Language) : only one operation -> retrive
+
+DML(Data manipulation language) : three operations
+insert
+update
+delete
+
+
