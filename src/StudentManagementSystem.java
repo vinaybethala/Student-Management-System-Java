@@ -11,6 +11,7 @@ public class StudentManagementSystem{
    public void addStudent(Student student){
     if(student.getRollNumber()<=0){
       System.out.println("Roll Number must be greater than 0.");
+      return;
     }
     else if(searchStudent(student.getRollNumber())!=null){ // before adding student we need to check whether the student is already present so calling search method again
      System.out.println("Student with Roll Number"+student.getRollNumber()+" already exists.");

@@ -40,8 +40,8 @@ private static int readValidAge(Scanner in){
 }
 private static String readValidDept(Scanner in){
     System.out.print("Enter student department: ");
-    String dept = in.nextLine();
-    if(dept.equals("CSE")||dept.equals("AIML")||dept.equals("AIDS")||dept.equals("CS")){
+    String dept = in.nextLine().toLowerCase();
+    if(dept.equals("cse")||dept.equals("aiml")||dept.equals("aids")||dept.equals("cs")){
         return dept;
     }
     else{
@@ -52,7 +52,45 @@ private static String readValidDept(Scanner in){
 private static String readValidEmail(Scanner in){
   System.out.print("Enter email id: ");
   String email =in.nextLine();
-  return email;
+  if(email.contains("@")){
+   if(email.contains(".")){
+    if(email.indexOf("@")!=0 && email.indexOf("@")!=email.length()-1){
+      if(email.indexOf("@")<email.indexOf(".")){
+        int count =0;
+        int dot =0;
+        for(int j=0;j<email.length();j++){
+            char con =email.charAt(j);
+            if (con == '@'){
+                count++;
+            }
+            else if(con == '.'){
+                dot++;
+            }
+        }
+        if(count==1 && dot>=1){
+            return email;
+        }
+        else{
+            System.out.println("invalid mail");
+            return readValidEmail(in);
+        }
+      }else{
+        System.out.println("invalid mail");
+        return readValidEmail(in);
+      }
+    }
+    else{
+        System.out.println("invalid mail");
+        return readValidEmail(in);
+    }
+   }else{
+    System.out.println("invalid mail");
+    return readValidEmail(in);
+   }
+  }else{
+    System.out.println("Invalid Mail");
+    return readValidEmail(in);
+  }
  }
     public static void main(String[] args) {  
         Scanner in = new Scanner(System.in);
@@ -102,8 +140,8 @@ private static String readValidEmail(Scanner in){
                 rollNumber = readValidRollNumber(in);
                 name = readValidName(in);
                 age = readValidAge(in);
-                department = readValidEmail(in);
-                email = readValidName(in);
+                department = readValidDept(in);
+                email = readValidEmail(in);
             sms.updateStudent(rollNumber, name, age, department, email);
             break;
             case 5 :
@@ -112,7 +150,8 @@ private static String readValidEmail(Scanner in){
                 break;
             case 6:
                 System.out.print("Thank you for using Student Management System.");
-                break;
+                System.exit(0);
+                return;
             default :
             System.out.println("Invalid input");
             break;
