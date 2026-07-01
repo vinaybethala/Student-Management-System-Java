@@ -1,6 +1,45 @@
 package src;
 import java.util.Scanner;
 public class Main {
+    public static void addStudent(Scanner in,StudentManagementSystem sms){
+        int rollNumber = readValidRollNumber(in);
+        String name = readValidName(in);
+        int age = readValidAge(in);
+        String department = readValidDept(in);
+        String email = readValidEmail(in);
+        Student student = new Student(rollNumber,name,age,department,email);
+        sms.addStudent(student);
+    return;
+    }
+    public static void displayStudents(StudentManagementSystem sms){
+        sms.displayStudents();
+        return;
+    }
+    public static void searchStudent(Scanner in ,StudentManagementSystem sms){
+        int rollNumber = readValidRollNumber(in);
+                Student stu = sms.searchStudent(rollNumber);
+                if(stu!=null){
+                System.out.print(stu);
+                }
+                else {
+                    System.out.println("student not found");
+                }
+        return;
+    }
+    public static void updateStudent(Scanner in,StudentManagementSystem sms){
+        int rollNumber = readValidRollNumber(in);
+          String name = readValidName(in);
+               int  age = readValidAge(in);
+                String department = readValidDept(in);
+                String email = readValidEmail(in);
+            sms.updateStudent(rollNumber, name, age, department, email);
+        return;
+    }
+    public static void deleteStudent(Scanner in,StudentManagementSystem sms){
+       int rollNumber = readValidRollNumber(in);
+                sms.deleteStudent(rollNumber);
+     return;
+    }
       private static int readValidRollNumber(Scanner in){
         System.out.print("Enter student rollNumber : ");
         int rollNumber =in.nextInt();
@@ -95,11 +134,6 @@ private static String readValidEmail(Scanner in){
     public static void main(String[] args) {  
         Scanner in = new Scanner(System.in);
         StudentManagementSystem sms = new StudentManagementSystem();
-                int rollNumber;
-                String name;
-                int age;
-                String department;
-                String email;
        while (true) { 
            System.out.println("==============================");
            System.out.println("Student Management System");
@@ -115,52 +149,27 @@ private static String readValidEmail(Scanner in){
            int choice = in.nextInt();
            switch(choice){
             case 1 :
-                rollNumber = readValidRollNumber(in);
-                name = readValidName(in);
-                age = readValidAge(in);
-                department = readValidDept(in);
-                email = readValidEmail(in);
-                Student student = new Student(rollNumber,name,age,department,email);
-                sms.addStudent(student);
+                addStudent(in, sms);
             break;
             case 2:
-                sms.displayStudents();
+                displayStudents(sms);
                 break;   
             case 3:
-                rollNumber = readValidRollNumber(in);
-                Student stu = sms.searchStudent(rollNumber);
-                if(stu!=null){
-                System.out.print(stu);
-                }
-                else {
-                    System.out.println("student not found");
-                }
+                searchStudent(in,sms);
                 break;
             case 4:
-                rollNumber = readValidRollNumber(in);
-                name = readValidName(in);
-                age = readValidAge(in);
-                department = readValidDept(in);
-                email = readValidEmail(in);
-            sms.updateStudent(rollNumber, name, age, department, email);
+                updateStudent(in, sms);
             break;
             case 5 :
-                rollNumber = readValidRollNumber(in);
-                sms.deleteStudent(rollNumber);
+                deleteStudent(in, sms);
                 break;
             case 6:
                 System.out.print("Thank you for using Student Management System.");
-                System.exit(0);
                 return;
             default :
             System.out.println("Invalid input");
             break;
            }
- 
-
-
-
-
        }
     }
     
